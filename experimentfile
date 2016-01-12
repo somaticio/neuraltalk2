@@ -1,0 +1,19 @@
+General:
+  git: https://github.com/somaticio/neuraltalk2.git
+
+Initialize:
+  command: ls
+  
+Train:
+  command: ls
+
+Test:
+  command: /home/ubuntu/experiment/inference.sh
+
+AWSOptions:
+
+parameters:
+  image:
+    type: file 
+    flag: -image
+    required: true
