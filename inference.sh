@@ -28,6 +28,7 @@ done
 # move inputted file to image folder
 cp $IMG_PATH $IMG_FOLDER
 
+cd /home/ubuntu/experiment
 # main process thing
 th /home/ubuntu/experiment/eval.lua \
     -model        $MODEL \
