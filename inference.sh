@@ -26,7 +26,7 @@ esac
 
 done
 # move inputted file to image folder
-mv $IMG_PATH $IMG_FOLDER
+cp $IMG_PATH $IMG_FOLDER
 
 # main process thing
 th /home/ubuntu/experiment/eval.lua \

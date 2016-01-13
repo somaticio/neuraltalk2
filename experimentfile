@@ -12,6 +12,9 @@ Train:
 Test:
   command: /home/ubuntu/experiment/inference.sh
   workspace: /home/ubuntu/
+  input:  file
+  output: string
+  mode: sync
 
 AWSOptions:
 

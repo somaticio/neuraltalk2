@@ -7,5 +7,5 @@ mkdir -p /data/images
 wget http://cs.stanford.edu/people/karpathy/neuraltalk2/checkpoint_v1_cpu.zip -P /data/models
 
 # unzip it
-unzip /data/models/checkpoint_v1_cpu.zip
+unzip /data/models/checkpoint_v1_cpu.zip -d /data/models
 
