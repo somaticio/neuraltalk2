@@ -25,6 +25,10 @@ case $key in
 esac
 
 done
+
+# remove any existing images if any
+rm /data/images/*
+
 # move inputted file to image folder
 cp $IMG_PATH $IMG_FOLDER
 
@@ -39,7 +43,7 @@ th /home/ubuntu/experiment/eval.lua \
 
 OUTPUT="$(date +%s)"
 
-jq --raw-output .[1].caption /home/ubuntu/experiment/vis/vis.json > /home/ubuntu/$OUTPUT.txt
+jq --raw-output .[].caption /home/ubuntu/experiment/vis/vis.json > /home/ubuntu/$OUTPUT.txt
 rm /home/ubuntu/experiment/vis/vis.json
 
 cat /home/ubuntu/$OUTPUT.txt
