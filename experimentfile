@@ -2,7 +2,7 @@ General:
   git: https://github.com/somaticio/neuraltalk2.git
 
 Initialize:
-  command: ls
+  command: /home/ubuntu/experiment/init.sh
   workspace: /home/ubuntu/
   
 Train:

@@ -29,6 +29,6 @@ RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install
 RUN pip install boto flask jinja2 markupsafe werkzeug futures itsdangerous requests wsgiref pyyaml py-cpuinfo psutil
 RUN cd /home/ubuntu/somaticagent/ && git pull
 RUN cd /home/ubuntu/experiment && git pull #use this to force an update
-RUN cd /home/ubuntu/experiment && git pull #use this to force an update
+RUN apt-get install axel
 RUN python /home/ubuntu/somaticagent/web.py -i
 
