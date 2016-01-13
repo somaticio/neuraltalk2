@@ -6,7 +6,7 @@ Initialize:
   workspace: /home/ubuntu/
   
 Train:
-  command: ls
+  command: /home/ubuntu/experiment/init.sh
   workspace: /home/ubuntu/
 
 Test:
