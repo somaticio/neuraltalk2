@@ -3,12 +3,15 @@ General:
 
 Initialize:
   command: ls
+  workspace: /home/ubuntu/
   
 Train:
   command: ls
+  workspace: /home/ubuntu/
 
 Test:
   command: /home/ubuntu/experiment/inference.sh
+  workspace: /home/ubuntu/
 
 AWSOptions:
 
