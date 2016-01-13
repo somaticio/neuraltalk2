@@ -36,3 +36,10 @@ th /home/ubuntu/experiment/eval.lua \
     -num_images   -1 \
     -gpuid        $GPU
 
+OUTPUT="$(date +%s)"
+
+jq --raw-output .[1].caption /home/ubuntu/experiment/vis/vis.json > /home/ubuntu/$OUTPUT.txt
+rm /home/ubuntu/experiment/vis/vis.json
+
+cat /home/ubuntu/$OUTPUT.txt
+echo /home/ubuntu/$OUTPUT.txt

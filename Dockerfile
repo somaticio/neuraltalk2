@@ -20,9 +20,7 @@ RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install
 RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install cunn
 RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install image
 RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install torch
-RUN apt-get install -y libprotobuf-dev protobuf-compiler
-RUN ls
-RUN ls
+RUN apt-get install -y libprotobuf-dev protobuf-compiler jq
 RUN git clone https://github.com/somaticio/neuraltalk2 /home/ubuntu/experiment
 ADD .docker-experimentconfig /home/ubuntu/experiment/.experimentconfig
 RUN apt-get -y install libhdf5-dev hdf5-tools python-dev python-pip
