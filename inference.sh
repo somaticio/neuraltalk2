@@ -2,9 +2,13 @@
 
 IMG_FOLDER="/data/images"
 MODEL_FOLDER="/data/models"
-MODEL="$(find /data/models -name '*_cpu.t7')"
 TEMPERATURE=1 # default is 1
 : ${GPU:=-1}
+if [$GPU = -1]; then
+    MODEL="$(find /data/models -name '*.t7_cpu.t7')"
+else
+    MODEL="$(find /data/models -name -not '*.t7_cpu.t7')"
+fi
 
 # get the command arguments
 while [[ $# > 1 ]]
