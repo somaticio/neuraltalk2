@@ -30,9 +30,7 @@ RUN pip install boto flask jinja2 markupsafe werkzeug futures itsdangerous reque
 RUN cd /home/ubuntu/somaticagent/ && git pull
 RUN cd /home/ubuntu/experiment && git pull #use this to force an update
 RUN apt-get install axel
-RUN cd /tmp
-RUN wget http://www.linos.es/cudnn-7.0-linux-x64-v3.0-prod.tgz
-RUN cd /usr/local
-RUN tar xzvf /tmp/cudnn-7.0-linux-x64-v3.0-prod.tgz
+RUN cd /tmp && wget http://www.linos.es/cudnn-7.0-linux-x64-v3.0-prod.tgz
+RUN cd /usr/local &&tar xzvf /tmp/cudnn-7.0-linux-x64-v3.0-prod.tgz
 RUN python /home/ubuntu/somaticagent/web.py -i
 

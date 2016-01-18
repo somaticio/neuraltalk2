@@ -7,7 +7,7 @@ TEMPERATURE=1 # default is 1
 if [$GPU = -1]; then
     MODEL="$(find /data/models -name '*.t7_cpu.t7')"
 else
-    MODEL="$(find /data/models -name -not '*.t7_cpu.t7')"
+    MODEL="$(find /data/models -not -name '*.t7_cpu.t7' -type f)"
 fi
 
 # get the command arguments
