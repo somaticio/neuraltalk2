@@ -1,0 +1,23 @@
+General:
+  git: https://github.com/somaticio/neuraltalk2.git
+
+Initialize:
+  command: /home/ubuntu/experiment/init.sh
+
+Train:
+  command: /home/ubuntu/experiment/train.sh
+
+Inference:
+  command: /home/ubuntu/experiment/inference.sh
+  mode: sync
+  input:  file
+  output: string
+  load_model_parameter:
+    flag: --model_folder
+  parameters:
+    -image:
+      type: file
+      flag: -image
+      required: true
+
+AWSOptions:
