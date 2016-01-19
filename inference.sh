@@ -1,14 +1,8 @@
 #!/bin/bash
 
 IMG_FOLDER="/data/images"
-MODEL_FOLDER="/data/models"
 TEMPERATURE=1 # default is 1
 : ${GPU:=-1}
-if [$GPU = -1]; then
-    MODEL="$(find /data/models -name '*.t7_cpu.t7')"
-else
-    MODEL="$(find /data/models -not -name '*.t7_cpu.t7' -type f)"
-fi
 
 # get the command arguments
 while [[ $# > 1 ]]
@@ -24,11 +18,22 @@ case $key in
     TEMPERATURE="$2"
     shift
     ;;
+    --model_folder)
+    MODEL_FOLDER="$2"
+    shift
+    ;;
 
     *)
 esac
 
 done
+
+# set which trained model to use
+if [$GPU = -1]; then
+    MODEL="$(find $MODEL_FOLDER -name '*.t7_cpu.t7')"
+else
+    MODEL="$(find $MODEL_FOLDER -not -name '*.t7_cpu.t7' -type f)"
+fi
 
 # remove any existing images if any
 rm /data/images/*
