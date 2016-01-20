@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMG_FOLDER="/data/images"
+IMG_FOLDER="/data/input"
 TEMPERATURE=1 # default is 1
 : ${GPU:=-1}
 
@@ -13,9 +13,6 @@ case $key in
     -image)
     IMG_PATH="$2"
     shift
-    ;;
-    -t|--temperature)
-    TEMPERATURE="$2"
     shift
     ;;
     --model_folder)
@@ -29,14 +26,14 @@ esac
 done
 
 # set which trained model to use
-if [$GPU = -1]; then
+if [ $GPU = -1 ]; then
     MODEL="$(find $MODEL_FOLDER -name '*.t7_cpu.t7')"
 else
     MODEL="$(find $MODEL_FOLDER -not -name '*.t7_cpu.t7' -type f)"
 fi
 
 # remove any existing images if any
-rm /data/images/*
+rm /data/input/*
 
 # move inputted file to image folder
 cp $IMG_PATH $IMG_FOLDER
