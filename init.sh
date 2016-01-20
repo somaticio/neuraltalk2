@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#mkdir -p /data/models
+mkdir -p /data/models
 #mkdir -p /data/images
 
 cd /tmp
