@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mkdir -p /data/models
-#mkdir -p /data/images
+mkdir -p /data/images
 
 cd /tmp
 # download and unzip the pretrained CPU model
