@@ -14,7 +14,7 @@ Test:
   workspace: /home/ubuntu/
   input:  file
   output: string
-  mode: sync
+  mode: async
 
 AWSOptions:
 

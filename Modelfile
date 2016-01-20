@@ -9,7 +9,7 @@ Train:
 
 Inference:
   command: /home/ubuntu/experiment/inference.sh
-  mode: sync
+  mode: async
   input:  file
   output: string
   load_model_parameter:
