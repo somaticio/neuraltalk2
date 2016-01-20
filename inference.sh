@@ -32,14 +32,8 @@ else
     MODEL="$(find $MODEL_FOLDER -not -name '*.t7_cpu.t7' -type f)"
 fi
 
-# remove any existing images if any
-rm /data/input/*
-
-# move inputted file to image folder
-cp $IMG_PATH $IMG_FOLDER
-
 cd /home/ubuntu/experiment
-# main process thing
+# main image processing
 /home/ubuntu/torch/install/bin/th /home/ubuntu/experiment/eval.lua \
     -model        $MODEL \
     -image_folder $IMG_FOLDER \
@@ -50,7 +44,9 @@ cd /home/ubuntu/experiment
 OUTPUT="$(date +%s)"
 
 jq --raw-output .[].caption /home/ubuntu/experiment/vis/vis.json > /home/ubuntu/$OUTPUT.txt
+# cleanup for next image upload
 rm /home/ubuntu/experiment/vis/vis.json
+rm /data/input/*
 
 cat /home/ubuntu/$OUTPUT.txt
 echo /home/ubuntu/$OUTPUT.txt
