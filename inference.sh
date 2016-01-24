@@ -1,7 +1,7 @@
 #!/bin/bash
 
 IMG_FOLDER="/data/input"
-MODEL_FOLDER="/data/images"
+MODEL_FOLDER="/data/model_cache"
 TEMPERATURE=1 # default is 1
 : ${GPU:=-1}
 
