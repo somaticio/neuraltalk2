@@ -10,6 +10,10 @@ Train:
     flag: --checkpoint_path
   load_data_set_parameter:
     flag: --input
+  parameters:
+    --input:
+      type: directory
+      flag: --input
 
 Inference:
   command: /home/ubuntu/experiment/inference.sh
