@@ -2,7 +2,8 @@
 
 INPUT_JSON='testtraining/raw.json'
 IMAGES_ROOT='testimages/'
-NUM_VAL=20
+NUM_VAL=5000
+NUM_TEST=5000
 CHECKPOINT_PATH='checkpoints'
 
 # check if training model is present
@@ -18,6 +19,10 @@ do
 key="$1"
 
 case $key in
+    -r|--input)
+    INPUT="$2"
+    shift # past argument
+    ;;
     -j|--input_json)
     INPUT_JSON="$2"
     shift # past argument
@@ -26,8 +31,12 @@ case $key in
     IMAGES_ROOT="$2"
     shift # past argument
     ;;
-    -n|--num_val)
+    -v|--num_val)
     NUM_VAL="$2"
+    shift # past argument
+    ;;
+    -t|--num_test)
+    NUM_TEST="$2"
     shift # past argument
     ;;
     -c|--checkpoint_path)
@@ -41,6 +50,9 @@ esac
 shift # past argument or value
 done
 
+INPUT_JSON="$INPUT/coco_raw.json"
+IMAGES_ROOT="$INPUT"
+
 NEW_JSON='testtraining/output.json'
 NEW_H5='testtraining/output.h5'
 
@@ -49,6 +61,7 @@ NEW_H5='testtraining/output.h5'
 /usr/bin/python /home/ubuntu/experiment/prepro.py \
     --input_json $INPUT_JSON \
     --num_val $NUM_VAL \
+    --num_test $NUM_TEST \
     --images_root $IMAGES_ROOT \
     --word_count_threshold 5 \
     --output_h5 $NEW_H5 \

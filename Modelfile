@@ -6,6 +6,10 @@ Initialize:
 
 Train:
   command: /home/ubuntu/experiment/train.sh
+  save_model_parameter:
+    flag: --checkpoint_path
+  load_data_set_parameter:
+    flag: --input
 
 Inference:
   command: /home/ubuntu/experiment/inference.sh
