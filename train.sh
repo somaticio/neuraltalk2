@@ -8,9 +8,9 @@ CHECKPOINT_PATH='checkpoints'
 
 # check if training model is present
 # if not, download it
-if [ ! -a model/VGG_ILSVRC_16_layers.caffemodel ]; then
+if [ ! -e model/VGG_ILSVRC_16_layers.caffemodel ]; then
     mkdir -p model
-    wget http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_16_layers.caffemodel -P model
+    axel -n 12 -o model/ http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_16_layers.caffemodel
 fi
 
 # get arguments from command line
@@ -43,6 +43,10 @@ case $key in
     CHECKPOINT_PATH="$2"
     shift # past argument
     ;;
+    -g|--gpuid)
+    GPUID="$2"
+    shift # past argument
+    ;;
     *)
 
     ;;
@@ -50,8 +54,10 @@ esac
 shift # past argument or value
 done
 
-INPUT_JSON="$INPUT/coco_raw.json"
-IMAGES_ROOT="$INPUT"
+if [ ! -z $INPUT ]; then
+    INPUT_JSON="$INPUT/coco_raw.json"
+    IMAGES_ROOT="$INPUT"
+fi
 
 NEW_JSON='testtraining/output.json'
 NEW_H5='testtraining/output.h5'
@@ -68,10 +74,12 @@ NEW_H5='testtraining/output.h5'
     --output_json $NEW_JSON
 # look at bottom of prepro.py for all options
 
+echo 'before torch training'
 # now actually train on the newly created json and h5 files
-/home/ubuntu/torch/install/bin/th /home/ubuntu/experiment/train.lua  \
+/home/ubuntu/torch/install/bin/th train.lua  \
     -input_h5 $NEW_H5 \
     -input_json $NEW_JSON \
+    -gpuid $GPUID \
     -checkpoint_path $CHECKPOINT_PATH
 # look inside train.lua for all options
 # TODO: figure out how to easily pass all available parameters
