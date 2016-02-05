@@ -5,6 +5,7 @@ IMAGES_ROOT='testimages/'
 NUM_VAL=5000
 NUM_TEST=5000
 CHECKPOINT_PATH='checkpoints'
+GPUID='-1'
 
 # check if training model is present
 # if not, download it
@@ -54,13 +55,23 @@ esac
 shift # past argument or value
 done
 
+# test on half and train on half for now
+NUMBER_OF_FILES="$(ls $IMAGES_ROOT | wc -l )"
+NUM_VAL="$(python -c 'print int(round('$NUMBER_OF_FILES' / 2 ))')"
+NUM_TEST=$NUM_VAL
+
+# if we were given a generic dir with both json file and images in it
 if [ ! -z $INPUT ]; then
-    INPUT_JSON="$INPUT/coco_raw.json"
+    INPUT_JSON="$(find $INPUT -name '*.json')"
     IMAGES_ROOT="$INPUT"
+    
+    NUMBER_OF_FILES="$(ls $INPUT | wc -l )"
+    NUM_VAL="$(python -c 'print int(round('$NUMBER_OF_FILES' / 2 ))')"
+    NUM_TEST=$NUM_VAL
 fi
 
-NEW_JSON='testtraining/output.json'
-NEW_H5='testtraining/output.h5'
+NEW_JSON='/data/output.json'
+NEW_H5='/data/output.h5'
 
 # first we must preprocess raw json file of images/captions
 # creates an hd5 and json

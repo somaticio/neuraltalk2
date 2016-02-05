@@ -26,11 +26,13 @@ ADD .docker-experimentconfig /home/ubuntu/experiment/.experimentconfig
 RUN apt-get -y install libhdf5-dev hdf5-tools python-dev python-pip python-scipy
 RUN pip install cython numpy h5py
 RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install hdf5
-RUN pip install boto flask jinja2 markupsafe werkzeug futures itsdangerous requests wsgiref pyyaml py-cpuinfo psutil
+RUN pip install boto flask jinja2 markupsafe werkzeug futures itsdangerous requests wsgiref pyyaml py-cpuinfo psutil python-magic
 RUN cd /home/ubuntu/somaticagent/ && git pull
 RUN cd /home/ubuntu/experiment && git pull #use this to force an update
+RUN ls
 RUN apt-get install axel
 RUN cd /tmp && wget http://www.linos.es/cudnn-7.0-linux-x64-v3.0-prod.tgz
 RUN cd /usr/local &&tar xzvf /tmp/cudnn-7.0-linux-x64-v3.0-prod.tgz
 RUN python /home/ubuntu/somaticagent/web.py -i
-
+RUN cd /home/ubuntu/experiment && git pull #use this to force an update
+RUN ldconfig
