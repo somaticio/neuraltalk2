@@ -47,6 +47,9 @@ cmd:option('-seed', 123, 'random number generator seed to use')
 cmd:option('-gpuid', 0, 'which gpu to use. -1 = use CPU')
 cmd:text()
 
+os.execute('mkdir -p /data/output/vis/imgs')
+-- TODO make this path a cmd option
+
 -------------------------------------------------------------------------------
 -- Basic Torch initializations
 -------------------------------------------------------------------------------
