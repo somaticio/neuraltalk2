@@ -44,7 +44,7 @@ cd /home/ubuntu/experiment
 
 OUTPUT="$(date +%s)"
 
-jq --raw-output .[].caption /home/ubuntu/experiment/vis/vis.json > /data/output/$OUTPUT.txt
+jq --raw-output .[].caption /data/output/vis/vis.json > /data/output/$OUTPUT.txt
 # cleanup for next image upload
 rm /home/ubuntu/experiment/vis/vis.json
 rm /data/input/*
